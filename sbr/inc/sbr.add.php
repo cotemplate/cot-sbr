@@ -195,6 +195,13 @@ if ($a == 'add')
 		cot_sbr_sendpost($id, $L['sbr_posts_performer_new'], $rsbr['sbr_performer'], 0, 'info');
 		cot_sbr_sendpost($id, $L['sbr_posts_employer_new'], $usr['id'], 0, 'info');
 		
+		/* === Hook === */
+		foreach (cot_getextplugins('sbr.add.add.done') as $pl)
+		{
+			include $pl;
+		}
+		/* ===== */
+		
 		cot_redirect(cot_url('sbr', 'id=' . $id, '', true));
 	}
 }
